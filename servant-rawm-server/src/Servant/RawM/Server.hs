@@ -49,7 +49,7 @@ import Servant                         (Context, Handler, HasServer (hoistServer
 import Servant.Server.Internal         (Delayed,
                                         RouteResult (Fail, FailFatal, Route),
                                         Router' (RawRouter),
-                                        responseServerError, runDelayed)
+                                        responseServantErr, runDelayed)
 import System.FilePath                 (addTrailingPathSeparator)
 import WaiAppStatic.Storage.Filesystem (ETagLookup)
 
@@ -87,7 +87,7 @@ instance HasServer (RawM' serverType) context where
               (Route handlerApp) -> do
                 eitherApp <- runHandler handlerApp
                 case eitherApp of
-                  Left err  -> respond . Route $ responseServerError err
+                  Left err  -> respond . Route $ responseServantErr err
                   Right app -> app request (respond . Route)
 
   hoistServerWithContext
