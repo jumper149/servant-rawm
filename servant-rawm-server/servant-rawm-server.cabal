@@ -23,7 +23,7 @@ library
                      , bytestring >= 0.10
                      , filepath >= 1.4
                      , servant-rawm
-                     , servant-server >= 0.16
+                     , servant-server >= 0.15
                      , resourcet >= 1.0
                      , wai >= 3.2
                      , wai-app-static >= 3.1
